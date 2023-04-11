@@ -9,27 +9,27 @@ namespace DAL.Repository
     {
         public bool Add(Members entity)
         {
-            context.Members.Add(entity);
-            return context.SaveChanges() > 0;
+            Context.Members.Add(entity);
+            return Context.SaveChanges() > 0;
         }
 
         public bool Delete(int id)
         {
             var member = Get(id);
-            context.Members.Remove(member);
-            return context.SaveChanges() > 0;
+            Context.Members.Remove(member);
+            return Context.SaveChanges() > 0;
         }
 
-        public Members Get(int id) => context.Members.Find(id);
+        public Members Get(int id) => Context.Members.Find(id);
 
-        public List<Members> GetAll() => context.Members.ToList();
+        public List<Members> GetAll() => Context.Members.ToList();
 
         public bool Update(Members entity)
         {
             var member = Get(entity.Id);
             if (member == null) return false;
-            context.Entry(member).CurrentValues.SetValues(entity);
-            return context.SaveChanges() > 0;
+            Context.Entry(member).CurrentValues.SetValues(entity);
+            return Context.SaveChanges() > 0;
         }
     }
 }
