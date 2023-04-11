@@ -2,6 +2,8 @@
 using DAL;
 using DAL.Models;
 using System.Collections.Generic;
+using AutoMapper;
+using DAL.Repository;
 
 namespace BLL.Service
 {
@@ -10,54 +12,26 @@ namespace BLL.Service
         public static bool CreateMember(MemberDto memberDto)
         {
             var memberRepository = DataFactory.MemberRepository();
-            var member = ConvertMemberDtoToMember(memberDto);
+            var member = Mapper.Map(memberDto, new Members());
             return memberRepository.Add(member);
         }
 
         public static List<MemberDto> GetMembers()
         {
             var memberRepository = DataFactory.MemberRepository();
-            return ConvertList(memberRepository.GetAll());
+            return Mapper.Map(memberRepository.GetAll(), new List<MemberDto>());
         }
 
         public static MemberDto GetMember(int id)
         {
             var memberRepository = DataFactory.MemberRepository();
-            return ConvertMemberToMemberDto(memberRepository.Get(id));
+            return Mapper.Map(memberRepository.Get(id), new MemberDto());
         }
 
         public static bool DeleteMember(int id)
         {
             var memberRepository = DataFactory.MemberRepository();
             return memberRepository.Delete(id);
-        }
-
-        private static MemberDto ConvertMemberToMemberDto(Members members)
-        {
-            return new MemberDto()
-            {
-                Id = members.Id,
-                Name = members.Name,
-                ProjectId = members.ProjectId
-            };
-        }
-        private static Members ConvertMemberDtoToMember(MemberDto members)
-        {
-            return new Members()
-            {
-                Id = members.Id,
-                Name = members.Name,
-                ProjectId = members.ProjectId
-            };
-        }
-        private static List<MemberDto> ConvertList(List<Members> members)
-        {
-            var data = new List<MemberDto>();
-            foreach (Members member in members)
-            {
-                data.Add(ConvertMemberToMemberDto(member));
-            }
-            return data;
         }
     }
 }
