@@ -6,9 +6,6 @@ namespace DAL
 {
     public static class DataFactory
     {
-        public static IRepository<Members, int, bool> MemberRepository()
-        {
-            return new MemberRepository();
-        }
+        public static IRepository<Members, int, bool> MemberRepository() => new MemberRepository();
     }
 }

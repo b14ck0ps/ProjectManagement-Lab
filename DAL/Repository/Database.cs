@@ -1,7 +1,7 @@
 ﻿namespace DAL.Repository
 {
-    public abstract class Database
+    internal abstract class Database
     {
-        internal AppDBContext context = new AppDBContext();
+        internal AppDbContext context = new AppDbContext();
     }
 }

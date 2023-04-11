@@ -1,11 +1,11 @@
-﻿using DAL.Interface;
-using DAL.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using DAL.Interface;
+using DAL.Models;
 
 namespace DAL.Repository
 {
-    public class MemberRepository : Database, IRepository<Members, int, bool>
+    internal class MemberRepository : Database, IRepository<Members, int, bool>
     {
         public bool Add(Members entity)
         {
@@ -20,25 +20,16 @@ namespace DAL.Repository
             return context.SaveChanges() > 0;
         }
 
-        public Members Get(int id)
-        {
-            return context.Members.Find(id);
-        }
+        public Members Get(int id) => context.Members.Find(id);
 
-        public List<Members> GetAll()
-        {
-            return context.Members.ToList();
-        }
+        public List<Members> GetAll() => context.Members.ToList();
 
         public bool Update(Members entity)
         {
             var member = Get(entity.Id);
-            if (member != null)
-            {
-                context.Entry(member).CurrentValues.SetValues(entity);
-                return context.SaveChanges() > 0;
-            }
-            return false;
+            if (member == null) return false;
+            context.Entry(member).CurrentValues.SetValues(entity);
+            return context.SaveChanges() > 0;
         }
     }
 }

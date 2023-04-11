@@ -1,8 +1,9 @@
-﻿using BLL.DTOs;
-using BLL.Service;
+﻿using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BLL.DTOs;
+using BLL.Service;
 
 namespace ApiLayer.Controllers
 {
@@ -14,53 +15,52 @@ namespace ApiLayer.Controllers
         {
             try
             {
-                var members = MemberService.GetMembers();
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, members));
-
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, MemberService.GetMembers()));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+
         [HttpGet]
         [Route("api/members/{id}")]
         public IHttpActionResult Get(int id)
         {
             try
             {
-                var member = MemberService.GetMember(id);
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, member));
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, MemberService.GetMember(id)));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+
         [HttpDelete]
         [Route("api/members/{id}")]
         public IHttpActionResult Delete(int id)
         {
             try
             {
-                var result = MemberService.DeleteMember(id);
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, result));
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, MemberService.DeleteMember(id)));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+
         [HttpPost]
         [Route("api/members")]
-        public IHttpActionResult Post([FromBody]MemberDto memberDto)
+        public IHttpActionResult Post([FromBody] MemberDto memberDto)
         {
             try
             {
-                var result = MemberService.CreateMember(memberDto);
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, result));
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK,
+                    MemberService.CreateMember(memberDto)));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
