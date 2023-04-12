@@ -95,5 +95,20 @@ namespace ApiLayer.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+
+        [HttpGet]
+        [Route("api/projects/status/{status}/date/{date}")]
+        public IHttpActionResult GetProjectsByStatusAndDate(string status, DateTime date)
+        {
+            try
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK,
+                    ProjectService.GetProjectsByStatusAndDate(status, date)));
+            }
+            catch (Exception)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
 using BLL.DTOs;
@@ -25,5 +26,8 @@ namespace BLL.Service
 
         public static List<ProjectDto> GetProjectsByStatus(string status) =>
             Mapper.Map(ProjectRepository.GetByStatus(status), new List<ProjectDto>());
+
+        public static List<ProjectDto> GetProjectsByStatusAndDate(string status, DateTime date) =>
+            Mapper.Map(ProjectRepository.GetByStatusAndStartDate(status, date), new List<ProjectDto>());
     }
 }

@@ -34,5 +34,8 @@ namespace DAL.Repository
         }
 
         public List<Project> GetByStatus(string status) => Context.Projects.Where(x => x.Status == status).ToList();
+
+        public List<Project> GetByStatusAndStartDate(string status, DateTime startDate) =>
+            Context.Projects.Where(x => x.Status == status && x.StartDate == startDate).ToList();
     }
 }
