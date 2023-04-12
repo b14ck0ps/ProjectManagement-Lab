@@ -10,10 +10,10 @@ namespace BLL.Service
 {
     public static class MemberService
     {
-        private static readonly IRepository<Members, int, bool> MemberRepository = DataFactory.MemberRepository();
+        private static readonly IRepository<Member, int, bool> MemberRepository = DataFactory.MemberRepository();
 
         public static bool CreateMember(MemberDto memberDto) =>
-            MemberRepository.Add(Mapper.Map(memberDto, new Members()));
+            MemberRepository.Add(Mapper.Map(memberDto, new Member()));
 
         public static List<MemberDto> GetMembers() => Mapper.Map(MemberRepository.GetAll(), new List<MemberDto>());
 

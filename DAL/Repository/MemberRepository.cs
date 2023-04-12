@@ -5,9 +5,9 @@ using DAL.Models;
 
 namespace DAL.Repository
 {
-    internal class MemberRepository : Database, IRepository<Members, int, bool>
+    internal class MemberRepository : Database, IRepository<Member, int, bool>
     {
-        public bool Add(Members entity)
+        public bool Add(Member entity)
         {
             Context.Members.Add(entity);
             return Context.SaveChanges() > 0;
@@ -20,11 +20,11 @@ namespace DAL.Repository
             return Context.SaveChanges() > 0;
         }
 
-        public Members Get(int id) => Context.Members.Find(id);
+        public Member Get(int id) => Context.Members.Find(id);
 
-        public List<Members> GetAll() => Context.Members.ToList();
+        public List<Member> GetAll() => Context.Members.ToList();
 
-        public bool Update(Members entity)
+        public bool Update(Member entity)
         {
             var member = Get(entity.Id);
             if (member == null) return false;

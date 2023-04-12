@@ -7,8 +7,8 @@ namespace BLL.DTOs
     {
         public MapperConfig()
         {
-            CreateMap<Members, MemberDto>();
-            CreateMap<MemberDto, Members>();
+            CreateMap<Member, MemberDto>();
+            CreateMap<MemberDto, Member>();
         }
     }
 }

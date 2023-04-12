@@ -54,12 +54,12 @@
     <Compile Include="AppDBContext.cs" />
     <Compile Include="DataFactory.cs" />
     <Compile Include="Interface\IRepository.cs" />
-    <Compile Include="Migrations\202304111351490_initdb.cs" />
-    <Compile Include="Migrations\202304111351490_initdb.designer.cs">
-      <DependentUpon>202304111351490_initdb.cs</DependentUpon>
+    <Compile Include="Migrations\202304120720349_initdb.cs" />
+    <Compile Include="Migrations\202304120720349_initdb.designer.cs">
+      <DependentUpon>202304120720349_initdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Members.cs" />
+    <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Database.cs" />
@@ -71,8 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202304111351490_initdb.resx">
-      <DependentUpon>202304111351490_initdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202304120720349_initdb.resx">
+      <DependentUpon>202304120720349_initdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

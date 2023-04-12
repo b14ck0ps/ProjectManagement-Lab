@@ -10,6 +10,6 @@ namespace DAL
         }
 
         public DbSet<Project> Projects { get; set; }
-        public DbSet<Members> Members { get; set; }
+        public DbSet<Member> Members { get; set; }
     }
 }
