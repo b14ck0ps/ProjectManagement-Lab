@@ -20,5 +20,8 @@ namespace BLL.Service
         public static MemberDto GetMember(int id) => Mapper.Map(MemberRepository.Get(id), new MemberDto());
 
         public static bool DeleteMember(int id) => MemberRepository.Delete(id);
+
+        public static bool UpdateMember(MemberDto memberDto) =>
+            MemberRepository.Update(Mapper.Map(memberDto, new Member()));
     }
 }

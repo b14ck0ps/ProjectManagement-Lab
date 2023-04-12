@@ -65,5 +65,19 @@ namespace ApiLayer.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+        [HttpPut]
+        [Route("api/members")]
+        public IHttpActionResult Put([FromBody] MemberDto memberDto)
+        {
+            try
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK,
+                                       MemberService.UpdateMember(memberDto)));
+            }
+            catch (Exception)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
+            }
+        }
     }
 }
