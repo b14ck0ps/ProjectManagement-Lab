@@ -9,6 +9,9 @@ namespace BLL.DTOs
         {
             CreateMap<Member, MemberDto>();
             CreateMap<MemberDto, Member>();
+
+            CreateMap<Project, ProjectDto>();
+            CreateMap<ProjectDto, Project>();
         }
     }
 }
