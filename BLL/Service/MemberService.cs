@@ -2,62 +2,26 @@
 using DAL;
 using DAL.Models;
 using System.Collections.Generic;
+using AutoMapper;
+using DAL.Interface;
+using DAL.Repository;
 
 namespace BLL.Service
 {
     public static class MemberService
     {
-        public static bool CreateMember(MemberDto memberDto)
-        {
-            var memberRepository = DataFactory.MemberRepository();
-            var member = ConvertMemberDtoToMember(memberDto);
-            return memberRepository.Add(member);
-        }
+        private static readonly IRepository<Member, int, bool> MemberRepository = DataFactory.MemberRepository();
 
-        public static List<MemberDto> GetMembers()
-        {
-            var memberRepository = DataFactory.MemberRepository();
-            return ConvertList(memberRepository.GetAll());
-        }
+        public static bool CreateMember(MemberDto memberDto) =>
+            MemberRepository.Add(Mapper.Map(memberDto, new Member()));
 
-        public static MemberDto GetMember(int id)
-        {
-            var memberRepository = DataFactory.MemberRepository();
-            return ConvertMemberToMemberDto(memberRepository.Get(id));
-        }
+        public static List<MemberDto> GetMembers() => Mapper.Map(MemberRepository.GetAll(), new List<MemberDto>());
 
-        public static bool DeleteMember(int id)
-        {
-            var memberRepository = DataFactory.MemberRepository();
-            return memberRepository.Delete(id);
-        }
+        public static MemberDto GetMember(int id) => Mapper.Map(MemberRepository.Get(id), new MemberDto());
 
-        private static MemberDto ConvertMemberToMemberDto(Members members)
-        {
-            return new MemberDto()
-            {
-                Id = members.Id,
-                Name = members.Name,
-                ProjectId = members.ProjectId
-            };
-        }
-        private static Members ConvertMemberDtoToMember(MemberDto members)
-        {
-            return new Members()
-            {
-                Id = members.Id,
-                Name = members.Name,
-                ProjectId = members.ProjectId
-            };
-        }
-        private static List<MemberDto> ConvertList(List<Members> members)
-        {
-            var data = new List<MemberDto>();
-            foreach (Members member in members)
-            {
-                data.Add(ConvertMemberToMemberDto(member));
-            }
-            return data;
-        }
+        public static bool DeleteMember(int id) => MemberRepository.Delete(id);
+
+        public static bool UpdateMember(MemberDto memberDto) =>
+            MemberRepository.Update(Mapper.Map(memberDto, new Member()));
     }
 }

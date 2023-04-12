@@ -1,14 +1,15 @@
-﻿using DAL.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using DAL.Models;
 
 namespace DAL
 {
-    public class AppDBContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDBContext() : base("name=mssql_project")
-        { }
+        public AppDbContext() : base("name=mssql_project")
+        {
+        }
 
-        public  DbSet<Project> Projects { get; set; }
-        public  DbSet<Members> Members { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Member> Members { get; set; }
     }
 }

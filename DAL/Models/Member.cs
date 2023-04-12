@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
 {
-    public class Members
+    public class Member
     {
         public int Id { get; set; }
+        [Required] public string Role { get; set; }
         [Required] public string Name { get; set; }
 
         [ForeignKey("Project")]

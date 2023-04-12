@@ -12,6 +12,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Role = c.String(nullable: false),
                         Name = c.String(nullable: false),
                         ProjectId = c.Int(nullable: false),
                     })
@@ -24,7 +25,10 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Title = c.String(nullable: false),
+                        Status = c.Boolean(nullable: false),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

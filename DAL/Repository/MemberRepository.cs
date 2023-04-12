@@ -1,44 +1,35 @@
-﻿using DAL.Interface;
-using DAL.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using DAL.Interface;
+using DAL.Models;
 
 namespace DAL.Repository
 {
-    public class MemberRepository : Database, IRepository<Members, int, bool>
+    internal class MemberRepository : Database, IRepository<Member, int, bool>
     {
-        public bool Add(Members entity)
+        public bool Add(Member entity)
         {
-            context.Members.Add(entity);
-            return context.SaveChanges() > 0;
+            Context.Members.Add(entity);
+            return Context.SaveChanges() > 0;
         }
 
         public bool Delete(int id)
         {
             var member = Get(id);
-            context.Members.Remove(member);
-            return context.SaveChanges() > 0;
+            Context.Members.Remove(member);
+            return Context.SaveChanges() > 0;
         }
 
-        public Members Get(int id)
-        {
-            return context.Members.Find(id);
-        }
+        public Member Get(int id) => Context.Members.Find(id);
 
-        public List<Members> GetAll()
-        {
-            return context.Members.ToList();
-        }
+        public List<Member> GetAll() => Context.Members.ToList();
 
-        public bool Update(Members entity)
+        public bool Update(Member entity)
         {
             var member = Get(entity.Id);
-            if (member != null)
-            {
-                context.Entry(member).CurrentValues.SetValues(entity);
-                return context.SaveChanges() > 0;
-            }
-            return false;
+            if (member == null) return false;
+            Context.Entry(member).CurrentValues.SetValues(entity);
+            return Context.SaveChanges() > 0;
         }
     }
 }
