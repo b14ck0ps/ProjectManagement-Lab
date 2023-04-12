@@ -53,10 +53,15 @@
   <ItemGroup>
     <Compile Include="AppDBContext.cs" />
     <Compile Include="DataFactory.cs" />
+    <Compile Include="Interface\IProjectDbOperation.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Migrations\202304120720349_initdb.cs" />
     <Compile Include="Migrations\202304120720349_initdb.designer.cs">
       <DependentUpon>202304120720349_initdb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304120813079_statusTypeChanged.cs" />
+    <Compile Include="Migrations\202304120813079_statusTypeChanged.designer.cs">
+      <DependentUpon>202304120813079_statusTypeChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Member.cs" />
@@ -73,6 +78,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202304120720349_initdb.resx">
       <DependentUpon>202304120720349_initdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304120813079_statusTypeChanged.resx">
+      <DependentUpon>202304120813079_statusTypeChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

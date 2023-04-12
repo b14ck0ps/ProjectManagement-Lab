@@ -9,7 +9,7 @@ namespace BLL.Service
 {
     public static class ProjectService
     {
-        private static readonly IRepository<Project, int, bool> ProjectRepository = DataFactory.ProjectRepository();
+        private static readonly IProjectDbOperation ProjectRepository = DataFactory.ProjectRepository();
 
         public static bool CreateProject(ProjectDto projectDto) =>
             ProjectRepository.Add(Mapper.Map(projectDto, new Project()));
@@ -22,5 +22,8 @@ namespace BLL.Service
 
         public static bool UpdateProject(ProjectDto projectDto) =>
             ProjectRepository.Update(Mapper.Map(projectDto, new Project()));
+
+        public static List<ProjectDto> GetProjectsByStatus(string status) =>
+            Mapper.Map(ProjectRepository.GetByStatus(status), new List<ProjectDto>());
     }
 }

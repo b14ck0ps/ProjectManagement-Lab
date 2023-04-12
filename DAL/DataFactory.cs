@@ -7,6 +7,6 @@ namespace DAL
     public static class DataFactory
     {
         public static IRepository<Member, int, bool> MemberRepository() => new MemberRepository();
-        public static IRepository<Project, int, bool> ProjectRepository() => new ProjectRepository();
+        public static IProjectDbOperation ProjectRepository() => new ProjectRepository();
     }
 }

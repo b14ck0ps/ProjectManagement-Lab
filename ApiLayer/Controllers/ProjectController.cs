@@ -80,5 +80,20 @@ namespace ApiLayer.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
             }
         }
+
+        [HttpGet]
+        [Route("api/projects/status/{status}")]
+        public IHttpActionResult GetProjectsByStatus(string status)
+        {
+            try
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK,
+                    ProjectService.GetProjectsByStatus(status)));
+            }
+            catch (Exception)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError));
+            }
+        }
     }
 }

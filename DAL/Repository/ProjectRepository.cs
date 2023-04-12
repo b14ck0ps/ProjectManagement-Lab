@@ -6,7 +6,7 @@ using DAL.Models;
 
 namespace DAL.Repository
 {
-    internal class ProjectRepository : Database, IRepository<Project, int, bool>
+    internal class ProjectRepository : Database, IProjectDbOperation
     {
         public bool Add(Project entity)
         {
@@ -32,5 +32,7 @@ namespace DAL.Repository
             Context.Entry(project).CurrentValues.SetValues(entity);
             return Context.SaveChanges() > 0;
         }
+
+        public List<Project> GetByStatus(string status) => Context.Projects.Where(x => x.Status == status).ToList();
     }
 }
